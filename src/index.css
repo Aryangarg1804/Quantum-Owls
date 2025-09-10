@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 218 35% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 218 35% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 218 35% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 263 84% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 40% 85%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 217 40% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 263 84% 66%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 217 32.6% 17.5%;
+    --input: 217 32.6% 17.5%;
+    --ring: 263 84% 66%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+  
+  #root {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .saheli-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .saheli-card {
+    @apply bg-card rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:shadow-saheli-purple/10 border border-white/10 backdrop-blur-sm;
+  }
+  
+  .saheli-btn {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 bg-gradient-to-r from-saheli-purple to-saheli-accent text-white shadow-md hover:shadow-lg hover:shadow-saheli-purple/20 hover:-translate-y-1;
+  }
+  
+  .saheli-btn-secondary {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 hover:-translate-y-1;
+  }
+  
+  .saheli-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-saheli-purple via-saheli-accent to-purple-400 bg-clip-text text-transparent;
+  }
+  
+  .saheli-subtitle {
+    @apply text-xl sm:text-2xl font-medium text-white/70;
+  }
+  
+  .saheli-section-title {
+    @apply text-2xl sm:text-3xl font-bold text-saheli-purple mb-2;
+  }
+  
+  .saheli-section-subtitle {
+    @apply text-base sm:text-lg text-white/70 mb-8;
+  }
+  
+  .saheli-nav-link {
+    @apply px-3 py-2 text-white/80 hover:text-white transition-colors;
+  }
+  
+  .saheli-nav-link-active {
+    @apply text-saheli-purple font-medium;
+  }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a1a1a, #000000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .spline-container {
+            width: 100vw;
+            height: 100vh;
+            animation: fadeIn 2s ease-in forwards;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .enter-button {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 22px;
+            background: linear-gradient(45deg, #ff0077, #ff55a5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 1.5s forwards, pulse 1.5s infinite alternate;
+            box-shadow: 0px 0px 15px rgba(255, 0, 119, 0.7);
+        }
+
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-50%) scale(1.08); }
+        }
+
+        .enter-button:hover {
+            background: linear-gradient(45deg, #ff55a5, #ff0077);
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0px 0px 20px rgba(255, 0, 119, 1);
+        }
+
+        .shockwave {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 0, 119, 0.4), transparent);
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: shockwave 0.8s ease-out forwards;
+        }
+
+        @keyframes shockwave {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(10); opacity: 0; }
+        }
+
+        .light-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <iframe class="spline-container" src='https://my.spline.design/3dtextbluecopy-be7cbc988d18d2b4453a8ec91e58d6bf/' frameborder='0'></iframe>
+
+    <button class="enter-button" onclick="enterSite(event)">Enter</button>
+
+     <audio id="background-music" src="https://www.fesliyanstudios.com/play-mp3/4386" loop></audio> 
+
+    <script>
+        // Add floating lights
+        function createLightParticles() {
+            for (let i = 0; i < 5; i++) {
+                let particle = document.createElement("div");
+                particle.classList.add("light-particle");
+                document.body.appendChild(particle);
+
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+
+                setTimeout(() => { particle.remove(); }, 5000);
+            }
+        }
+        setInterval(createLightParticles, 2000);
+
+        // Background glow effect based on mouse movement
+        document.addEventListener("mousemove", (e) => {
+            let x = (e.clientX / window.innerWidth) * 100;
+            let y = (e.clientY / window.innerHeight) * 100;
+            document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #2a2a2a, #000000)`;
+        });
+
+        // Play background music
+        let music = document.getElementById("background-music");
+        music.volume = 0.5;
+        music.play();
+
+        // Shockwave effect on click
+        function createShockwave(event) {
+            let shockwave = document.createElement("div");
+            shockwave.classList.add("shockwave");
+            document.body.appendChild(shockwave);
+            shockwave.style.left = `${event.clientX - 50}px`;
+            shockwave.style.top = `${event.clientY - 50}px`;
+            setTimeout(() => { shockwave.remove(); }, 800);
+        }
+
+        // function enterSite(event) {
+        //     createShockwave(event);
+        //     music.pause();
+
+        //     document.querySelector(".spline-container").style.animation = "fadeOut 1s ease-in forwards";
+        //     document.querySelector(".enter-button").style.animation = "fadeOut 0.5s ease-in forwards";
+
+        //     setTimeout(() => {
+        //         window.location.href = "http://localhost:5173/";
+        //     }, 1000);
+        // }
+        function enterSite(event) {
+    createShockwave(event);
+    music.pause();
+
+    document.querySelector(".spline-container").style.animation = "fadeOut 1s ease-in forwards";
+    document.querySelector(".enter-button").style.animation = "fadeOut 0.5s ease-in forwards";
+
+    setTimeout(() => {
+        window.location.href = "prepa.html"; 
+    }, 1000);
+}
+    </script>
+
+</body>
+</html> 
+
+
+
+
