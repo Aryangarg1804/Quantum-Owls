@@ -161,6 +161,36 @@ const Index = () => {
               linkText: "Explore schemes",
               linkTextHi: "योजनाओं का अन्वेषण करें",
             },
+            {
+              title: "Health & Wellness",
+              titleHi: "स्वास्थ्य और कल्याण",
+              desc: "Comprehensive health resources and support systems designed specifically for women's wellbeing.",
+              descHi:
+                "विशेष रूप से महिलाओं की भलाई के लिए डिज़ाइन किए गए व्यापक स्वास्थ्य संसाधन और सहायता प्रणाली।",
+              link: "/health-wellness",
+              linkText: "Explore health resources",
+              linkTextHi: "स्वास्थ्य संसाधनों का अन्वेषण करें",
+            },
+            {
+              title: "Legal Support",
+              titleHi: "कानूनी सहायता",
+              desc: "Legal assistance and guidance to protect women's rights and ensure justice.",
+              descHi:
+                "महिलाओं के अधिकारों की सुरक्षा और न्याय सुनिश्चित करने के लिए कानूनी सहायता और मार्गदर्शन।",
+              link: "/legal-support",
+              linkText: "Get legal help",
+              linkTextHi: "कानूनी सहायता प्राप्त करें",
+            },
+            {
+              title: "Financial Planning",
+              titleHi: "वित्तीय योजना",
+              desc: "Investment guidance and budget planning tools to secure your financial future.",
+              descHi:
+                "आपके वित्तीय भविष्य को सुरक्षित करने के लिए निवेश मार्गदर्शन और बजट योजना उपकरण।",
+              link: "/investments",
+              linkText: "Plan finances",
+              linkTextHi: "वित्त की योजना बनाएं",
+            },
           ].map((feature, index) => (
             <div
               className="saheli-card animate-scale-in"

@@ -31,8 +31,9 @@ export default {
 				saheli: {
 					purple: '#8B5CF6',
 					lavender: '#E5DEFF',
-					deep: '#1A1F2C',
+					deep: '#000000',
 					accent: '#9b87f5',
+					pink: '#EC4899',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
