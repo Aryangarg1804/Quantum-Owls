@@ -4,6 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import HeroSection from "@/components/HeroSection";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Investments = () => {
   const [formData, setFormData] = useState({
@@ -70,99 +71,101 @@ const Investments = () => {
   const chartData = calculateReturns();
   const hasData = chartData.length > 0 && chartData[chartData.length - 1].value > 0;
   
+  const { translate } = useLanguage();
+
   return (
     <div className="min-h-screen">
       <HeroSection
-        title="Investment Planner"
-        subtitle="Plan your investments and visualize potential returns"
+        title={translate('Investment Planner','निवेश योजना')}
+        subtitle={translate('Plan your investments and visualize potential returns','अपने निवेश की योजना बनाएं और संभावित रिटर्न देखें')}
       />
       
       <section className="py-12 saheli-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="saheli-card">
-            <h3 className="text-xl font-semibold mb-6">Investment Details</h3>
+            <h3 className="text-xl font-semibold mb-6">{translate('Investment Details','निवेश विवरण')}</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-white/70 mb-2">Monthly Mutual Funds (₹)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Monthly Mutual Funds (₹)','मासिक म्यूचुअल फंड (₹)')}</label>
                 <Input 
                   type="number" 
                   name="mutualFunds"
                   value={formData.mutualFunds}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter amount"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter amount','राशि दर्ज करें')}
                 />
               </div>
               
               <div>
-                <label className="block text-white/70 mb-2">Monthly Stocks (₹)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Monthly Stocks (₹)','मासिक शेयर (₹)')}</label>
                 <Input 
                   type="number" 
                   name="stocks"
                   value={formData.stocks}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter amount"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter amount','राशि दर्ज करें')}
                 />
               </div>
               
               <div>
-                <label className="block text-white/70 mb-2">Monthly Fixed Deposits (₹)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Monthly Fixed Deposits (₹)','মासিক ফिक्स्ड ডिपॉजिट (₹)')}</label>
                 <Input 
                   type="number" 
                   name="fixedDeposits"
                   value={formData.fixedDeposits}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter amount"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter amount','राशि दर्ज करें')}
                 />
               </div>
               
               <div>
-                <label className="block text-white/70 mb-2">Monthly Gold Investment (₹)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Monthly Gold Investment (₹)','मासिक सोना निवेश (₹)')}</label>
                 <Input 
                   type="number" 
                   name="gold"
                   value={formData.gold}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter amount"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter amount','राशि दर्ज करें')}
                 />
               </div>
               
               <div>
-                <label className="block text-white/70 mb-2">Monthly Real Estate (₹)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Monthly Real Estate (₹)','मासिक रियल एस्टेट (₹)')}</label>
                 <Input 
                   type="number" 
                   name="realEstate"
                   value={formData.realEstate}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter amount"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter amount','राशि दर्ज करें')}
                 />
               </div>
               
               <div>
-                <label className="block text-white/70 mb-2">Investment Period (Years)</label>
+                <label className="block text-muted-foreground mb-2">{translate('Investment Period (Years)','निवेश अवधि (वर्ष)')}</label>
                 <Input 
                   type="number" 
                   name="years"
                   value={formData.years}
                   onChange={handleChange}
-                  className="bg-white/5 border-white/10 text-white"
-                  placeholder="Enter years"
+                  className="bg-background border-border text-foreground"
+                  placeholder={translate('Enter years','वर्ष दर्ज करें')}
                   min="1"
                   max="30"
                 />
               </div>
               
-              <Button className="saheli-btn w-full mt-4">Calculate Returns</Button>
+              <Button className="saheli-btn w-full mt-4">{translate('Calculate Returns','रिटर्न की गणना करें')}</Button>
             </div>
           </div>
           
           <div className="saheli-card">
-            <h3 className="text-xl font-semibold mb-6">Projected Returns</h3>
+            <h3 className="text-xl font-semibold mb-6">{translate('Projected Returns','अनुमानित रिटर्न')}</h3>
             
             {hasData ? (
               <div className="h-80">
@@ -178,8 +181,8 @@ const Investments = () => {
                       tickFormatter={(value) => `₹${value/1000}k`}
                     />
                     <Tooltip 
-                      formatter={(value) => [`₹${value}`, 'Portfolio Value']}
-                      labelFormatter={(label) => `Year: ${label}`}
+                      formatter={(value) => [`₹${value}`, translate('Portfolio Value','पोर्टफोलियो मूल्य')]}
+                      labelFormatter={(label) => `${translate('Year','वर्ष')}: ${label}`}
                     />
                     <Line 
                       type="monotone" 
@@ -194,8 +197,8 @@ const Investments = () => {
               </div>
             ) : (
               <div className="h-80 flex items-center justify-center">
-                <p className="text-white/50 text-center">
-                  Enter your investment details on the left to see projected returns
+                <p className="text-muted-foreground/80 text-center">
+                  {translate('Enter your investment details on the left to see projected returns','अनुमानित रिटर्न देखने के लिए बाईं ओर अपने निवेश विवरण दर्ज करें')}
                 </p>
               </div>
             )}
@@ -203,8 +206,8 @@ const Investments = () => {
             {hasData && (
               <div className="mt-6 pt-6 border-t border-white/10">
                 <div className="flex justify-between items-center">
-                  <span className="text-white/70">Monthly Investment:</span>
-                  <span className="text-white font-semibold">
+                  <span className="text-muted-foreground">{translate('Monthly Investment:','मासिक निवेश:')}</span>
+                  <span className="text-foreground font-semibold">
                     ₹{
                       (Number(formData.mutualFunds) || 0) + 
                       (Number(formData.stocks) || 0) + 
@@ -216,8 +219,8 @@ const Investments = () => {
                 </div>
                 
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-white/70">Total Invested (over {formData.years} years):</span>
-                  <span className="text-white font-semibold">
+                  <span className="text-muted-foreground">{translate('Total Invested (over','कुल निवेश (')} {formData.years} {translate('years):','वर्षों में):')}</span>
+                  <span className="text-foreground font-semibold">
                     ₹{(
                       ((Number(formData.mutualFunds) || 0) + 
                       (Number(formData.stocks) || 0) + 
@@ -229,14 +232,14 @@ const Investments = () => {
                 </div>
                 
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-white/70">Projected Value:</span>
+                  <span className="text-muted-foreground">{translate('Projected Value:','अनुमानित मूल्य:')}</span>
                   <span className="text-green-500 font-semibold">
                     ₹{chartData[chartData.length - 1].value.toLocaleString()}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-white/70">Projected Growth:</span>
+                  <span className="text-muted-foreground">{translate('Projected Growth:','अनुमानित वृद्धि:')}</span>
                   <span className="text-green-500 font-semibold">
                     {Math.round(
                       (chartData[chartData.length - 1].value / 

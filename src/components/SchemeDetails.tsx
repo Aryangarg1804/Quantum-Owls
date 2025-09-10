@@ -3,61 +3,67 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Volume2, VolumeX, Languages } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
+import Translated from '@/components/Translated';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SchemeDetailsProps {
   title: string;
+  titleHi?: string;
   description: string;
+  descriptionHi?: string;
   benefits: string[];
+  benefitsHi?: string[];
   eligibility: string;
+  eligibilityHi?: string;
   documents: string[];
+  documentsHi?: string[];
   applicationProcess: string[];
+  applicationProcessHi?: string[];
   imageUrl: string;
   contactInfo: string;
+  contactInfoHi?: string;
   onBack: () => void;
 }
 
 const SchemeDetails = ({
   title,
+  titleHi,
   description,
+  descriptionHi,
   benefits,
+  benefitsHi,
   eligibility,
+  eligibilityHi,
   documents,
+  documentsHi,
   applicationProcess,
+  applicationProcessHi,
   imageUrl,
   contactInfo,
+  contactInfoHi,
   onBack
 }: SchemeDetailsProps) => {
-  const [isHindi, setIsHindi] = useState(false);
+  const { language } = useLanguage();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const { toast } = useToast();
   
-  // Simple translations (in a real app, this would use a translation API)
-  const hindiContent = {
-    title: `${title} (हिंदी)`,
-    description: `${description} (हिंदी में विवरण)`,
-    benefits: benefits.map(b => `${b} (हिंदी)`),
-    eligibility: `${eligibility} (हिंदी में पात्रता)`,
-    documents: documents.map(d => `${d} (हिंदी)`),
-    applicationProcess: applicationProcess.map(p => `${p} (हिंदी)`),
-    contactInfo: `${contactInfo} (हिंदी में संपर्क जानकारी)`
-  };
-  
-  const contentToUse = isHindi ? hindiContent : {
-    title,
-    description,
-    benefits,
-    eligibility,
-    documents,
-    applicationProcess,
-    contactInfo
+  const contentToUse = {
+    title: language === 'hi' ? (titleHi || title) : title,
+    description: language === 'hi' ? (descriptionHi || description) : description,
+    benefits: benefits.map((b, i) => language === 'hi' ? (benefitsHi?.[i] || b) : b),
+    eligibility: language === 'hi' ? (eligibilityHi || eligibility) : eligibility,
+    documents: documents.map((d, i) => language === 'hi' ? (documentsHi?.[i] || d) : d),
+    applicationProcess: applicationProcess.map((p, i) => language === 'hi' ? (applicationProcessHi?.[i] || p) : p),
+    contactInfo: language === 'hi' ? (contactInfoHi || contactInfo) : contactInfo,
   };
 
   const toggleLanguage = () => {
-    setIsHindi(!isHindi);
     toast({
-      title: isHindi ? "Switched to English" : "हिंदी में बदला गया",
-      description: isHindi ? "Content is now in English" : "सामग्री अब हिंदी में है",
+      title: language === 'hi' ? 'Switched to English' : 'हिंदी में बदला गया',
+      description: language === 'hi' ? 'Content is now in English' : 'सामग्री अब हिंदी में है',
     });
+    // Suggest the user to use the global language toggle in Navbar
+    document.querySelector('button[aria-label*="Switch to"]')?.dispatchEvent(new Event('click', { bubbles: true }));
   };
   
   const speakText = () => {
@@ -77,7 +83,7 @@ const SchemeDetails = ({
       const utterance = new SpeechSynthesisUtterance(speechText);
       
       // Set language based on current state
-      utterance.lang = isHindi ? 'hi-IN' : 'en-US';
+  utterance.lang = language === 'hi' ? 'hi-IN' : 'en-US';
       
       // Set event handlers
       utterance.onstart = () => setIsSpeaking(true);
@@ -111,7 +117,7 @@ const SchemeDetails = ({
           className="flex items-center gap-2 text-saheli-purple hover:text-saheli-purple/80"
         >
           <ArrowLeft className="h-5 w-5" />
-          <span>Back to Schemes</span>
+          <span><Translated en="Back to Schemes" hi="योजनाओं पर वापस" /></span>
         </Button>
         
         <div className="flex gap-2">
@@ -121,7 +127,7 @@ const SchemeDetails = ({
             className="flex items-center gap-2 border-saheli-purple text-saheli-purple hover:bg-saheli-purple/10"
           >
             <Languages className="h-5 w-5" />
-            <span>{isHindi ? "EN" : "हिंदी"}</span>
+            <span><Translated en="हिंदी" hi="EN" /></span>
           </Button>
           
           <Button
@@ -143,18 +149,18 @@ const SchemeDetails = ({
         <div className="lg:col-span-2">
           <h1 className="saheli-title mb-4">{contentToUse.title}</h1>
           
-          <div className="bg-gradient-to-r from-saheli-purple/20 to-saheli-accent/20 p-6 rounded-xl mb-6 backdrop-blur-sm animate-fade-in">
-            <p className="text-white/90 text-lg leading-relaxed">
+          <div className="bg-gradient-to-r from-saheli-purple/10 to-saheli-accent/10 p-6 rounded-xl mb-6 backdrop-blur-sm animate-fade-in">
+            <p className="text-foreground text-lg leading-relaxed">
               {contentToUse.description}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="saheli-card animate-scale-in" style={{animationDelay: '100ms'}}>
-              <h3 className="text-xl font-semibold mb-4 text-saheli-purple">Benefits</h3>
+              <h3 className="text-xl font-semibold mb-4 text-saheli-purple"><Translated en="Benefits" hi="लाभ" /></h3>
               <ul className="space-y-2">
                 {contentToUse.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-2 text-white/80">
+                  <li key={index} className="flex items-start gap-2 text-muted-foreground">
                     <span className="inline-block h-6 w-6 bg-saheli-purple/20 text-saheli-purple rounded-full flex-shrink-0 flex items-center justify-center text-sm mt-0.5">{index + 1}</span>
                     <span>{benefit}</span>
                   </li>
@@ -163,16 +169,16 @@ const SchemeDetails = ({
             </div>
             
             <div className="saheli-card animate-scale-in" style={{animationDelay: '200ms'}}>
-              <h3 className="text-xl font-semibold mb-4 text-saheli-purple">Eligibility</h3>
-              <p className="text-white/80">{contentToUse.eligibility}</p>
+              <h3 className="text-xl font-semibold mb-4 text-saheli-purple"><Translated en="Eligibility" hi="पात्रता" /></h3>
+              <p className="text-muted-foreground">{contentToUse.eligibility}</p>
             </div>
           </div>
           
           <div className="saheli-card mb-8 animate-scale-in" style={{animationDelay: '300ms'}}>
-            <h3 className="text-xl font-semibold mb-4 text-saheli-purple">Required Documents</h3>
+            <h3 className="text-xl font-semibold mb-4 text-saheli-purple"><Translated en="Required Documents" hi="आवश्यक दस्तावेज" /></h3>
             <ul className="space-y-2">
               {contentToUse.documents.map((doc, index) => (
-                <li key={index} className="flex items-start gap-2 text-white/80">
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-saheli-purple">•</span>
                   <span>{doc}</span>
                 </li>
@@ -181,10 +187,10 @@ const SchemeDetails = ({
           </div>
           
           <div className="saheli-card animate-scale-in" style={{animationDelay: '400ms'}}>
-            <h3 className="text-xl font-semibold mb-4 text-saheli-purple">Application Process</h3>
+            <h3 className="text-xl font-semibold mb-4 text-saheli-purple"><Translated en="Application Process" hi="आवेदन प्रक्रिया" /></h3>
             <ol className="space-y-4">
               {contentToUse.applicationProcess.map((step, index) => (
-                <li key={index} className="flex items-start gap-3 text-white/80">
+                <li key={index} className="flex items-start gap-3 text-muted-foreground">
                   <span className="inline-block h-7 w-7 bg-saheli-purple/20 text-saheli-purple rounded-full flex-shrink-0 flex items-center justify-center font-medium">
                     {index + 1}
                   </span>
@@ -206,10 +212,10 @@ const SchemeDetails = ({
                 />
               </div>
               
-              <Button className="saheli-btn w-full mb-4">Apply Now</Button>
+              <Button className="saheli-btn w-full mb-4"><Translated en="Apply Now" hi="अभी आवेदन करें" /></Button>
               
               <div className="p-4 bg-white/5 rounded-lg mb-4">
-                <h4 className="font-medium text-saheli-purple mb-2">Contact Information</h4>
+                <h4 className="font-medium text-saheli-purple mb-2"><Translated en="Contact Information" hi="संपर्क जानकारी" /></h4>
                 <p className="text-white/80">{contentToUse.contactInfo}</p>
               </div>
               

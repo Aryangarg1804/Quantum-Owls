@@ -111,7 +111,7 @@ const CalculatorCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
       </div>
       
-      <h3 className="text-xl font-semibold mb-4 text-white">
+  <h3 className="text-xl font-semibold mb-4 text-foreground">
         {translate(title, titleHi || title)}
       </h3>
       

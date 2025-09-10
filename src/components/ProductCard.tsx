@@ -103,18 +103,18 @@ const ProductCard = ({
         />
       </div>
       
-      <h3 className="text-xl font-semibold mb-1 text-white">
+  <h3 className="text-xl font-semibold mb-1 text-foreground">
         {translate(title, titleHi || title)}
       </h3>
-      <p className="text-saheli-purple font-medium mb-2">
+  <p className="text-saheli-purple font-medium mb-2">
         {translate(producer, producerHi || producer)}
       </p>
       
-      <p className="text-white/70 mb-4 flex-grow">
+  <p className="text-muted-foreground mb-4 flex-grow">
         {translate(description, descriptionHi || description)}
       </p>
       
-      <p className="text-white font-medium mb-4">{priceRange}</p>
+  <p className="text-foreground font-medium mb-4">{priceRange}</p>
       
       <div className="flex gap-2">
         <Link to={`/product/${id}`} className="flex-grow">

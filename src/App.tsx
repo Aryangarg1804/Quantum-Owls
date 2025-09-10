@@ -67,6 +67,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { CartProvider } from "./contexts/CartContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -95,6 +96,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <LanguageProvider>
+        <ThemeProvider>
         <CartProvider>
           <Toaster />
           <Sonner />
@@ -127,7 +129,8 @@ const App = () => (
             </div>
             <Chatbot />
           </BrowserRouter>
-        </CartProvider>
+  </CartProvider>
+  </ThemeProvider>
       </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>

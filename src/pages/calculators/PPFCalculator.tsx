@@ -119,7 +119,7 @@ const PPFCalculator = () => {
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-white/70 mb-2">
+                  <label className="block text-muted-foreground mb-2">
                     {translate("Initial Investment (₹)", "प्रारंभिक निवेश (₹)")}
                   </label>
                   <Input 
@@ -127,17 +127,17 @@ const PPFCalculator = () => {
                     name="initialInvestment"
                     value={formData.initialInvestment}
                     onChange={handleChange}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-background border-border text-foreground"
                     min="500"
                     max="150000"
                   />
-                  <p className="text-xs text-white/50 mt-1">
+                  <p className="text-xs text-muted-foreground/80 mt-1">
                     {translate("Min: ₹500, Max: ₹1,50,000", "न्यूनतम: ₹500, अधिकतम: ₹1,50,000")}
                   </p>
                 </div>
                 
                 <div>
-                  <label className="block text-white/70 mb-2">
+                  <label className="block text-muted-foreground mb-2">
                     {translate("Monthly Contribution (₹)", "मासिक योगदान (₹)")}
                   </label>
                   <Input 
@@ -145,17 +145,17 @@ const PPFCalculator = () => {
                     name="monthlyContribution"
                     value={formData.monthlyContribution}
                     onChange={handleChange}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-background border-border text-foreground"
                     min="500"
                     max="12500"
                   />
-                  <p className="text-xs text-white/50 mt-1">
+                  <p className="text-xs text-muted-foreground/80 mt-1">
                     {translate("Min: ₹500, Max: ₹12,500 per month", "न्यूनतम: ₹500, अधिकतम: ₹12,500 प्रति माह")}
                   </p>
                 </div>
                 
                 <div>
-                  <label className="block text-white/70 mb-2">
+                  <label className="block text-muted-foreground mb-2">
                     {translate("Tenure (Years)", "अवधि (वर्ष)")}
                   </label>
                   <Input 
@@ -163,17 +163,17 @@ const PPFCalculator = () => {
                     name="tenure"
                     value={formData.tenure}
                     onChange={handleChange}
-                    className="bg-white/5 border-white/10 text-white"
+                    className="bg-background border-border text-foreground"
                     min="15"
                     max="50"
                   />
-                  <p className="text-xs text-white/50 mt-1">
+                  <p className="text-xs text-muted-foreground/80 mt-1">
                     {translate("Min: 15 years, Max: 50 years", "न्यूनतम: 15 वर्ष, अधिकतम: 50 वर्ष")}
                   </p>
                 </div>
                 
                 <div className="pt-4">
-                  <p className="text-white/70 mb-2">
+                  <p className="text-muted-foreground mb-2">
                     {translate("Interest Rate", "ब्याज दर")}
                   </p>
                   <p className="text-saheli-purple font-semibold text-xl">7.1% p.a.</p>
@@ -193,18 +193,18 @@ const PPFCalculator = () => {
               <h3 className="text-xl font-semibold mb-6">{translate("PPF Results", "पीपीएफ परिणाम")}</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-white/5 rounded-lg p-4">
-                  <p className="text-white/70 mb-1">{translate("Total Investment", "कुल निवेश")}</p>
+                <div className="bg-muted rounded-lg p-4">
+                  <p className="text-muted-foreground mb-1">{translate("Total Investment", "कुल निवेश")}</p>
                   <p className="text-xl font-semibold">₹{results.totalInvestment.toLocaleString()}</p>
                 </div>
                 
-                <div className="bg-white/5 rounded-lg p-4">
-                  <p className="text-white/70 mb-1">{translate("Interest Earned", "अर्जित ब्याज")}</p>
+                <div className="bg-muted rounded-lg p-4">
+                  <p className="text-muted-foreground mb-1">{translate("Interest Earned", "अर्जित ब्याज")}</p>
                   <p className="text-xl font-semibold text-green-500">₹{results.interestEarned.toLocaleString()}</p>
                 </div>
                 
-                <div className="bg-white/5 rounded-lg p-4">
-                  <p className="text-white/70 mb-1">{translate("Maturity Amount", "परिपक्वता राशि")}</p>
+                <div className="bg-muted rounded-lg p-4">
+                  <p className="text-muted-foreground mb-1">{translate("Maturity Amount", "परिपक्वता राशि")}</p>
                   <p className="text-xl font-semibold text-saheli-purple">₹{results.maturityAmount.toLocaleString()}</p>
                 </div>
               </div>
@@ -274,7 +274,7 @@ const PPFCalculator = () => {
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-white/10">
+                    <tr className="border-b border-border">
                       <th className="text-left py-3 px-4">{translate("Year", "वर्ष")}</th>
                       <th className="text-right py-3 px-4">{translate("Investment", "निवेश")}</th>
                       <th className="text-right py-3 px-4">{translate("Interest", "ब्याज")}</th>
@@ -283,7 +283,7 @@ const PPFCalculator = () => {
                   </thead>
                   <tbody>
                     {results.yearlyData.map((data, index) => (
-                      <tr key={index} className="border-b border-white/10">
+                      <tr key={index} className="border-b border-border">
                         <td className="py-3 px-4">{data.year}</td>
                         <td className="py-3 px-4 text-right">₹{data.investment.toLocaleString()}</td>
                         <td className="py-3 px-4 text-right text-green-500">₹{data.interest.toLocaleString()}</td>

@@ -64,7 +64,7 @@ const Cart = () => {
           <div className="saheli-card flex flex-col items-center p-8 text-center">
             <ShoppingBag className="h-16 w-16 text-saheli-purple/30 mb-4" />
             <h2 className="text-xl font-semibold mb-2">{translate("Your cart is empty", "आपकी कार्ट खाली है")}</h2>
-            <p className="text-white/70 mb-6">{translate(
+            <p className="text-muted-foreground mb-6">{translate(
               "Add items to your cart to see them here", 
               "अपनी कार्ट में आइटम जोड़ें ताकि उन्हें यहां देख सकें"
             )}</p>
@@ -79,7 +79,7 @@ const Cart = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-white/10">
+                      <tr className="border-b border-border">
                         <th className="text-left py-4 px-4">{translate("Product", "उत्पाद")}</th>
                         <th className="text-center py-4 px-4">{translate("Quantity", "मात्रा")}</th>
                         <th className="text-right py-4 px-4">{translate("Price", "कीमत")}</th>
@@ -88,7 +88,7 @@ const Cart = () => {
                     </thead>
                     <tbody>
                       {items.map((item) => (
-                        <tr key={item.id} className="border-b border-white/10">
+                        <tr key={item.id} className="border-b border-border">
                           <td className="py-4 px-4">
                             <div className="flex items-center gap-3">
                               <img src={item.image} alt={item.title} className="h-16 w-16 object-cover rounded-md" />
@@ -165,33 +165,33 @@ const Cart = () => {
                   
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between">
-                      <span className="text-white/70">{translate("Subtotal", "उप-कुल")}</span>
+                      <span className="text-muted-foreground">{translate("Subtotal", "उप-कुल")}</span>
                       <span>₹{subtotal.toFixed(2)}</span>
                     </div>
                     
                     <div className="flex justify-between">
-                      <span className="text-white/70">{translate("Shipping", "शिपिंग")}</span>
+                      <span className="text-muted-foreground">{translate("Shipping", "शिपिंग")}</span>
                       <span>{translate("Free", "मुफ्त")}</span>
                     </div>
                     
                     <div className="flex justify-between">
-                      <span className="text-white/70">{translate("Tax", "कर")}</span>
+                      <span className="text-muted-foreground">{translate("Tax", "कर")}</span>
                       <span>₹{(subtotal * 0.18).toFixed(2)}</span>
                     </div>
                     
-                    <div className="border-t border-white/10 pt-4 flex justify-between font-semibold">
+                    <div className="border-t border-border pt-4 flex justify-between font-semibold">
                       <span>{translate("Total", "कुल")}</span>
                       <span className="text-saheli-purple">₹{(subtotal + subtotal * 0.18).toFixed(2)}</span>
                     </div>
                   </div>
                   
                   <div className="mb-4">
-                    <label className="block text-white/70 mb-2">
+                    <label className="block text-muted-foreground mb-2">
                       {translate("Coupon Code", "कूपन कोड")}
                     </label>
                     <div className="flex gap-2">
                       <Input 
-                        className="bg-white/5 border-white/10"
+                        className="bg-background border-border text-foreground"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value)}
                         placeholder={translate("Enter coupon code", "कूपन कोड दर्ज करें")}

@@ -96,7 +96,7 @@ const Entrepreneurship = () => {
                   <h3 className="text-xl font-semibold mb-2">
                     {translate("Rekha's Spice Business", "रेखा का मसाला व्यवसाय")}
                   </h3>
-                  <p className="text-white/70 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     {translate(
                       `"Starting my own spice business allowed me to support my family and send my daughters to college. The government schemes and Saheli's guidance helped me expand from a small home operation to a collective that now employs 15 women from my village."`,
                       `"अपना खुद का मसाला व्यवसाय शुरू करने से मुझे अपने परिवार का समर्थन करने और अपनी बेटियों को कॉलेज भेजने की अनुमति मिली। सरकारी योजनाओं और साहेली के मार्गदर्शन ने मुझे एक छोटे घरेलू संचालन से एक सामूहिक संगठन तक विस्तार करने में मदद की, जो अब मेरे गांव की 15 महिलाओं को रोजगार देता है।"`
@@ -121,7 +121,7 @@ const Entrepreneurship = () => {
                   <h3 className="text-xl font-semibold mb-2">
                     {translate("Sunita's Handloom Journey", "सुनीता की हथकरघा यात्रा")}
                   </h3>
-                  <p className="text-white/70 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     {translate(
                       `"I learned weaving from my mother, but never thought it could be a profitable business. With a small loan from Mahila Udyam Nidhi and digital marketing skills from Saheli workshops, my handloom products now reach customers across the country."`,
                       `"मैंने अपनी मां से बुनाई सीखी, लेकिन कभी नहीं सोचा था कि यह एक लाभदायक व्यवसाय हो सकता है। महिला उद्यम निधि से एक छोटे ऋण और साहेली कार्यशालाओं से डिजिटल मार्केटिंग कौशल के साथ, मेरे हथकरघा उत्पाद अब पूरे देश के ग्राहकों तक पहुंचते हैं।"`

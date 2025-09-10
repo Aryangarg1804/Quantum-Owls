@@ -238,8 +238,8 @@ const ProductDetail = ({}: ProductDetailProps) => {
             <h1 className="saheli-title mb-4">{translate(product.title, product.titleHi)}</h1>
             <p className="text-saheli-purple font-medium text-xl mb-6">{translate(product.producer, product.producerHi)}</p>
             
-            <div className="bg-gradient-to-r from-saheli-purple/20 to-saheli-accent/20 p-6 rounded-xl mb-6 backdrop-blur-sm animate-fade-in">
-              <p className="text-white/90 text-lg leading-relaxed">
+            <div className="bg-gradient-to-r from-saheli-purple/10 to-saheli-accent/10 p-6 rounded-xl mb-6 backdrop-blur-sm animate-fade-in">
+              <p className="text-foreground text-lg leading-relaxed">
                 {translate(product.description, product.descriptionHi)}
               </p>
             </div>
@@ -251,7 +251,7 @@ const ProductDetail = ({}: ProductDetailProps) => {
                 </h3>
                 <ul className="space-y-2">
                   {(language === 'en' ? product.features : product.featuresHi).map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2 text-white/80">
+                    <li key={index} className="flex items-start gap-2 text-muted-foreground">
                       <span className="inline-block h-6 w-6 bg-saheli-purple/20 text-saheli-purple rounded-full flex-shrink-0 flex items-center justify-center text-sm mt-0.5">{index + 1}</span>
                       <span>{feature}</span>
                     </li>
@@ -264,7 +264,7 @@ const ProductDetail = ({}: ProductDetailProps) => {
               <h3 className="text-xl font-semibold mb-4 text-saheli-purple">
                 {translate("Our Story", "हमारी कहानी")}
               </h3>
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {translate(product.story, product.storyHi)}
               </p>
             </div>
@@ -285,11 +285,11 @@ const ProductDetail = ({}: ProductDetailProps) => {
                   ))}
                 </div>
                 
-                <div className="p-4 bg-white/5 rounded-lg mb-4">
+                <div className="p-4 bg-muted rounded-lg mb-4">
                   <h4 className="font-medium text-saheli-purple mb-2">
                     {translate("Price Range", "मूल्य सीमा")}
                   </h4>
-                  <p className="text-white/80 text-xl font-bold">{product.priceRange}</p>
+                  <p className="text-foreground text-xl font-bold">{product.priceRange}</p>
                 </div>
                 
                 <Button 
@@ -327,7 +327,7 @@ const ProductDetail = ({}: ProductDetailProps) => {
                       <li key={key}>
                         <a 
                           href={`/product/${key}`} 
-                          className="text-white/80 hover:text-white transition-colors"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
                         >
                           {translate(p.title, p.titleHi)}
                         </a>
