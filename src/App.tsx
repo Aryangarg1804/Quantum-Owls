@@ -86,6 +86,8 @@ import ChildEducationCalculator from "./pages/calculators/ChildEducationCalculat
 import SipCalculator from "./pages/calculators/SipCalculator";
 import LoanCalculator from "./pages/calculators/LoanCalculator";
 import RetirementCalculator from "./pages/calculators/RetirementCalculator";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +116,8 @@ const App = () => (
                   <Route path="/calculators/retirementCalculater" element={<RetirementCalculator/>} /> 
                   <Route path="/budget-planner" element={<BudgetPlanner />} />
                   <Route path="/investments" element={<Investments />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>

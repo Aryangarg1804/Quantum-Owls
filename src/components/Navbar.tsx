@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: 'Government Schemes', nameHi: 'सरकारी योजनाएँ', path: '/government-schemes' },
     { name: 'Entrepreneurship', nameHi: 'उद्यमिता', path: '/entrepreneurship' },
     { name: 'Calculators', nameHi: 'कैलकुलेटर', path: '/calculators' },
-    { name: 'Budget Planner', nameHi: 'बजट प्लानर', path: '/budget-planner' },
+    { name: 'Budget Planner', nameHi: 'बजट प्लानर', path: '/calculators/budget-planner' },
     { name: 'Investments', nameHi: 'निवेश', path: '/investments' },
   ];
 
@@ -54,6 +54,8 @@ const Navbar = () => {
               <Globe className="h-4 w-4" />
               <span>{language === 'en' ? 'हिंदी' : 'EN'}</span>
             </Button>
+            <Link to="/login" className="text-sm text-saheli-purple hover:underline">{translate('Login','लॉगिन')}</Link>
+            <Link to="/register" className="text-sm px-3 py-1 rounded-full bg-saheli-purple/10 text-saheli-purple hover:bg-saheli-purple/20 transition">{translate('Sign up','साइन अप')}</Link>
             
             <Button 
               variant="ghost" 
@@ -92,7 +94,7 @@ const Navbar = () => {
       
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-saheli-card border-t border-white/10 animate-fade-in-down">
+  <div className="md:hidden bg-saheli-card border-t border-white/10 animate-fade-in-down">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigationItems.map((item) => (
               <Link
@@ -109,6 +111,8 @@ const Navbar = () => {
               <Globe className="h-4 w-4" />
               <span>{language === 'en' ? 'Switch to हिंदी' : 'Switch to English'}</span>
             </Button>
+            <Link to="/login" onClick={closeMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white/80 hover:bg-white/10">{translate('Login','लॉगिन')}</Link>
+            <Link to="/register" onClick={closeMenu} className="block px-3 py-2 rounded-md text-base font-medium text-white/80 hover:bg-white/10">{translate('Sign up','साइन अप')}</Link>
           </div>
         </div>
       )}
