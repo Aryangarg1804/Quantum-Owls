@@ -74,6 +74,26 @@ npm run build
 bash
 cd saheli-sisterhood-space-main
 npm run build
+
+## 🚀 Deploying to Vercel (Frontend)
+
+You can deploy the frontend to Vercel easily:
+
+1. Push your code to GitHub.
+2. Go to [vercel.com](https://vercel.com/) and import your repository.
+3. Set the project root to the frontend folder (e.g. `New Saheli`).
+4. Vercel will detect the Vite project and use `npm run build` automatically.
+5. Add a `vercel.json` file (already included) for proper SPA routing:
+	 ```json
+	 {
+		 "rewrites": [
+			 { "source": "/(.*)", "destination": "/index.html" }
+		 ]
+	 }
+	 ```
+6. After deployment, your site will be live at your Vercel domain.
+
+For backend deployment, use services like Render, Railway, or Vercel Serverless Functions.
 ## 🤝 Contributing
 1. Fork the repository
 2. Create your feature branch (git checkout -b feature/AmazingFeature)
