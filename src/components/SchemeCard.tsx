@@ -62,87 +62,83 @@ const SchemeCard = ({
   };
 
   const categoryInfo = getCategoryInfo(category);
+
   return (
-    <div className={`relative overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-6 ${className}`}>
-      {/* Category Badge */}
-      {category && (
-        <div className="absolute top-4 right-4">
-          <Badge className={`${categoryInfo.color} flex items-center gap-1 text-xs font-medium px-2 py-1`}>
-            <Tag className="h-3 w-3" />
-            {translate(categoryInfo.label, categoryInfo.labelHi)}
-          </Badge>
-        </div>
-      )}
-      
-      {/* Icon and Title Section */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className="flex-shrink-0 p-3 rounded-lg bg-gradient-to-br from-saheli-purple/10 to-saheli-pink/10 text-saheli-purple">
-          {icon}
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-bold mb-2 text-foreground leading-tight">
+    <div className={`flip-card ${className}`}>
+      <div className="flip-card-inner">
+        {/* Front Side */}
+        <div className="flip-card-front flex flex-col items-center justify-center rounded-xl border border-border bg-card text-card-foreground shadow-lg p-6">
+          <div className="flex-shrink-0 p-3 rounded-lg bg-gradient-to-br from-saheli-purple/10 to-saheli-pink/10 text-saheli-purple mb-2">
+            {icon}
+          </div>
+          <h3 className="text-lg font-bold mb-2 text-foreground leading-tight text-center">
             {translate(title, titleHi || title)}
           </h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">
+        </div>
+        {/* Back Side */}
+        <div className="flip-card-back relative overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-lg p-6">
+          {/* Category Badge */}
+          {category && (
+            <div className="absolute top-4 right-4">
+              <Badge className={`${categoryInfo.color} flex items-center gap-1 text-xs font-medium px-2 py-1`}>
+                <Tag className="h-3 w-3" />
+                {translate(categoryInfo.label, categoryInfo.labelHi)}
+              </Badge>
+            </div>
+          )}
+          <p className="text-sm text-muted-foreground mb-2">
             {translate(description, descriptionHi || description)}
           </p>
+          <div className="grid grid-cols-1 gap-3 mb-4">
+            {maxAmount && (
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/50">
+                <IndianRupee className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <div>
+                  <p className="text-xs text-muted-foreground">{translate("Max Amount", "अधिकतम राशि")}</p>
+                  <p className="font-semibold text-sm text-foreground">{maxAmount}</p>
+                </div>
+              </div>
+            )}
+            {targetGroup && (
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/50">
+                <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <div>
+                  <p className="text-xs text-muted-foreground">{translate("Target Group", "लक्षित समूह")}</p>
+                  <p className="font-medium text-sm text-foreground line-clamp-1">
+                    {translate(targetGroup, targetGroupHi || targetGroup)}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="mb-4">
+            <h4 className="text-saheli-purple font-semibold mb-2 text-sm flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-saheli-purple"></span>
+              <Translated en="Key Benefits" hi="मुख्य लाभ" />
+            </h4>
+            <ul className="space-y-1">
+              {benefits.slice(0, 3).map((benefit, index) => (
+                <li key={index} className="text-xs text-muted-foreground flex items-start gap-2">
+                  <span className="w-1 h-1 rounded-full bg-saheli-purple/60 mt-2 flex-shrink-0"></span>
+                  <span className="line-clamp-1">{translate(benefit, benefitsHi?.[index] || benefit)}</span>
+                </li>
+              ))}
+              {benefits.length > 3 && (
+                <li className="text-xs text-saheli-purple font-medium">
+                  +{benefits.length - 3} {translate("more benefits", "और लाभ")}
+                </li>
+              )}
+            </ul>
+          </div>
+          <Button 
+            className="w-full bg-gradient-to-r from-saheli-purple to-saheli-pink hover:from-saheli-purple/90 hover:to-saheli-pink/90 text-white font-medium transition-all duration-200 flex items-center justify-center gap-2 h-10" 
+            onClick={onViewDetails}
+          >
+            <span><Translated en="View Details" hi="विवरण देखें" /></span>
+            <ExternalLink className="h-4 w-4" />
+          </Button>
         </div>
       </div>
-
-      {/* Quick Info Section */}
-      <div className="grid grid-cols-1 gap-3 mb-4">
-        {maxAmount && (
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/50">
-            <IndianRupee className="h-4 w-4 text-green-600 dark:text-green-400" />
-            <div>
-              <p className="text-xs text-muted-foreground">{translate("Max Amount", "अधिकतम राशि")}</p>
-              <p className="font-semibold text-sm text-foreground">{maxAmount}</p>
-            </div>
-          </div>
-        )}
-        
-        {targetGroup && (
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-muted/50">
-            <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-            <div>
-              <p className="text-xs text-muted-foreground">{translate("Target Group", "लक्षित समूह")}</p>
-              <p className="font-medium text-sm text-foreground line-clamp-1">
-                {translate(targetGroup, targetGroupHi || targetGroup)}
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
-      
-      {/* Benefits Section */}
-      <div className="mb-4">
-        <h4 className="text-saheli-purple font-semibold mb-2 text-sm flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-saheli-purple"></span>
-          <Translated en="Key Benefits" hi="मुख्य लाभ" />
-        </h4>
-        <ul className="space-y-1">
-          {benefits.slice(0, 3).map((benefit, index) => (
-            <li key={index} className="text-xs text-muted-foreground flex items-start gap-2">
-              <span className="w-1 h-1 rounded-full bg-saheli-purple/60 mt-2 flex-shrink-0"></span>
-              <span className="line-clamp-1">{translate(benefit, benefitsHi?.[index] || benefit)}</span>
-            </li>
-          ))}
-          {benefits.length > 3 && (
-            <li className="text-xs text-saheli-purple font-medium">
-              +{benefits.length - 3} {translate("more benefits", "और लाभ")}
-            </li>
-          )}
-        </ul>
-      </div>
-      
-      {/* Action Button */}
-      <Button 
-        className="w-full bg-gradient-to-r from-saheli-purple to-saheli-pink hover:from-saheli-purple/90 hover:to-saheli-pink/90 text-white font-medium transition-all duration-200 flex items-center justify-center gap-2 h-10" 
-        onClick={onViewDetails}
-      >
-        <span><Translated en="View Details" hi="विवरण देखें" /></span>
-        <ExternalLink className="h-4 w-4" />
-      </Button>
     </div>
   );
 };
