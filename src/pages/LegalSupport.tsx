@@ -97,6 +97,12 @@ const LegalSupport = () => {
     { name: "Legal Aid Services", nameHi: "कानूनी सहायता सेवाएं", number: "15100" },
   ];
 
+  const usefulLinks = [
+    { label: "National Legal Services Authority (NALSA)", url: "https://nalsa.gov.in/" },
+    { label: "Ministry of Women & Child Development", url: "https://wcd.nic.in/" },
+    { label: "National Commission for Women", url: "https://ncw.nic.in/" },
+  ];
+
   const commonLegalIssues = [
     {
       title: "Divorce and Separation",
@@ -258,12 +264,39 @@ const LegalSupport = () => {
                   {translate(contact.name, contact.nameHi)}
                 </h3>
                 <p className="text-2xl font-bold text-saheli-purple">{contact.number}</p>
-                <Button className="mt-4 w-full" variant="outline">
-                  <Translated en="Call Now" hi="अभी कॉल करें" />
-                </Button>
+                <a href={`tel:${contact.number}`} className="block mt-4">
+                  <Button className="w-full" variant="outline">
+                    <Translated en="Call Now" hi="अभी कॉल करें" />
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           ))}
+        </div>
+      </section>
+
+      {/* Useful Legal Resources */}
+      <section className="py-16 bg-muted/30">
+        <div className="saheli-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
+              <Translated en="Useful Links" hi="उपयोगी लिंक" />
+            </h2>
+            <p className="text-muted-foreground">
+              <Translated en="Official websites for more information and services" hi="अधिक जानकारी और सेवाओं के लिए आधिकारिक वेबसाइटें" />
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {usefulLinks.map((l, i) => (
+              <Card key={i}>
+                <CardContent className="pt-6">
+                  <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-saheli-purple hover:underline">
+                    {l.label}
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 

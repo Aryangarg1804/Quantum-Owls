@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { useProducts } from "@/contexts/ProductContext";
 import { 
   Search, 
   Filter, 
@@ -51,65 +52,8 @@ const Entrepreneurship = () => {
     { value: "beauty", label: "Beauty & Wellness", labelHi: "सौंदर्य और कल्याण" },
     { value: "agriculture", label: "Agriculture", labelHi: "कृषि" }
   ];
-  // Enhanced products data
-  const products = [
-    {
-      id: "handloom-sarees",
-      category: "textiles",
-      image: "https://i.pinimg.com/474x/04/66/56/0466566606dcccfc9fdeb69b5ae81d0b.jpg",
-      title: "Handloom Sarees",
-      titleHi: "हथकरघा साड़ियां",
-      producer: "Lakshmi's Weaves",
-      producerHi: "लक्ष्मी की बुनाई",
-      description: "Traditional handwoven sarees made by skilled artisans",
-      descriptionHi: "कुशल कारीगरों द्वारा बनाई गई पारंपरिक हथकरघा साड़ियां",
-      priceRange: "₹2,500 - ₹15,000",
-      rating: 4.8,
-      orders: 145
-    },
-    {
-      id: "organic-spices",
-      category: "food",
-      image: "https://i.pinimg.com/736x/d8/c8/19/d8c8195f1f852b3678a8bba9cbc6bc27.jpg",
-      title: "Organic Spices",
-      titleHi: "जैविक मसाले",
-      producer: "Rural Women's Collective",
-      producerHi: "ग्रामीण महिला संघ",
-      description: "Pure and authentic spices sourced directly from farmers",
-      descriptionHi: "किसानों से सीधे प्राप्त शुद्ध और प्रामाणिक मसाले",
-      priceRange: "₹200 - ₹1,000",
-      rating: 4.9,
-      orders: 328
-    },
-    {
-      id: "handicraft-items",
-      category: "handicrafts",
-      image: "https://i.pinimg.com/736x/62/20/05/6220056f6df161427c1addc196afabc2.jpg",
-      title: "Handicraft Items",
-      titleHi: "हस्तशिल्प वस्तुएं",
-      producer: "Artisan Circle",
-      producerHi: "कारीगर मंडल",
-      description: "Handmade decorative items and home accessories",
-      descriptionHi: "हस्तनिर्मित सजावटी वस्तुएं और घरेलू सामान",
-      priceRange: "₹500 - ₹5,000",
-      rating: 4.7,
-      orders: 89
-    },
-    {
-      id: "organic-beauty",
-      category: "beauty",
-      image: "https://i.pinimg.com/736x/98/00/ef/9800ef9ba075dc5b21d3818a0323ff77.jpg",
-      title: "Organic Beauty Products",
-      titleHi: "जैविक सौंदर्य उत्पाद",
-      producer: "Nature's Touch",
-      producerHi: "प्रकृति का स्पर्श",
-      description: "Natural skincare products made from traditional recipes",
-      descriptionHi: "पारंपरिक व्यंजनों से बने प्राकृतिक स्किनकेयर उत्पाद",
-      priceRange: "₹150 - ₹1,200",
-      rating: 4.6,
-      orders: 203
-    }
-  ];
+  // Dynamic products via context
+  const { products } = useProducts();
 
   // Filter products based on search and category
   const filteredProducts = products.filter(product => {
@@ -294,6 +238,13 @@ const Entrepreneurship = () => {
                 "ग्रामीण महिला उद्यमियों द्वारा शुरू किए गए अद्भुत व्यवसायों की खोज करें। स्थानीय कारीगरों का समर्थन करें और समुदायों को सशक्त बनाएं।"
               )}
             </p>
+            <div className="mt-6 flex justify-center">
+              <a href="/add-product">
+                <Button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                  <Translated en="Add your product" hi="अपना उत्पाद जोड़ें" />
+                </Button>
+              </a>
+            </div>
           </div>
 
           {/* Search and Filter Section */}

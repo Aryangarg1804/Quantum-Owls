@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CartProvider } from "./contexts/CartContext";
+import { ProfileProvider } from "./contexts/ProfileContext";
+import { ProductProvider } from "./contexts/ProductContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,6 +20,8 @@ import Calculators from "./pages/Calculators";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import Investments from "./pages/Investments";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
 import PPFCalculator from "./pages/calculators/PPFCalculator";
 import SukanyaSamriddhiCalculator from "./pages/calculators/SukanyaSamriddhiCalculator";
@@ -30,6 +34,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HealthWellness from "./pages/HealthWellness";
 import LegalSupport from "./pages/LegalSupport";
+import ProfilePage from "@/pages/ProfilePage";
+import AddProduct from "@/pages/AddProduct";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +45,8 @@ const App = () => (
       <LanguageProvider>
         <ThemeProvider>
           <AuthProvider>
+            <ProfileProvider>
+            <ProductProvider>
             <CartProvider>
               <Toaster />
               <Sonner />
@@ -66,6 +74,10 @@ const App = () => (
                       <Route path="/login" element={<Login />} />
                       <Route path="/register" element={<Register />} />
                       <Route path="/cart" element={<Cart />} />
+                      <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/order/:id" element={<OrderConfirmation />} />
+                      <Route path="/profile" element={<ProfilePage />} />
+                      <Route path="/add-product" element={<AddProduct />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
@@ -74,6 +86,8 @@ const App = () => (
                 <Chatbot />
               </BrowserRouter>
             </CartProvider>
+            </ProductProvider>
+            </ProfileProvider>
           </AuthProvider>
         </ThemeProvider>
       </LanguageProvider>

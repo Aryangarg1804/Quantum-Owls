@@ -6,6 +6,17 @@
         <title>Saheli</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <script>
+            // Set dark mode by default early to avoid flash of light theme
+            (function(){
+                try {
+                    var saved = localStorage.getItem('saheli-theme');
+                    if (!saved || saved === 'dark') {
+                        document.documentElement.classList.add('dark');
+                    }
+                } catch(e) {}
+            })();
+        </script>
+        <script>
             // Redirect to prepa.html once per session so the welcome shows first
             (function(){
                 try {

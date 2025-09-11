@@ -96,7 +96,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/bf/1e/90/bf1e90076ee2ca8a264d79cfc36f3f7d.jpg",
       contactInfo: "Toll-free helpline: 1800-XXX-XXXX, Email: pmmy@gov.in, Website: www.pmmy.gov.in",
-      contactInfoHi: "टोल-फ्री हेल्पलाइन: 1800-XXX-XXXX, ईमेल: pmmy@gov.in, वेबसाइट: www.pmmy.gov.in"
+  contactInfoHi: "टोल-फ्री हेल्पलाइन: 1800-XXX-XXXX, ईमेल: pmmy@gov.in, वेबसाइट: www.pmmy.gov.in",
+  officialUrl: "https://www.mudra.org.in/"
     },
     {
       id: "muns",
@@ -155,7 +156,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/da/0a/ca/da0aca7a3d5ada50f2c41bf2c239ce75.jpg",
       contactInfo: "Contact your nearest nationalized bank or visit www.mudra.org.in",
-      contactInfoHi: "अपने निकटतम राष्ट्रीयकृत बैंक से संपर्क करें या www.mudra.org.in पर जाएं"
+  contactInfoHi: "अपने निकटतम राष्ट्रीयकृत बैंक से संपर्क करें या www.mudra.org.in पर जाएं",
+  officialUrl: "https://www.mudra.org.in/"
     },
     {
       id: "msy",
@@ -214,7 +216,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/58/c6/d0/58c6d07e3f885c7ccb7c817f38f3f4b5.jpg",
       contactInfo: "Visit your nearest government bank or call 1800-XXX-XXXX for more information",
-      contactInfoHi: "अपने निकटतम सरकारी बैंक में जाएं या अधिक जानकारी के लिए 1800-XXX-XXXX पर कॉल करें"
+  contactInfoHi: "अपने निकटतम सरकारी बैंक में जाएं या अधिक जानकारी के लिए 1800-XXX-XXXX पर कॉल करें",
+  officialUrl: "https://www.india.gov.in/"
     },
     {
       id: "ssy",
@@ -273,7 +276,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/4f/35/37/4f3537127cd2f41097c71eed51fdcb32.jpg",
       contactInfo: "Visit any post office or authorized banks or call 1800-XXX-XXXX for more information",
-      contactInfoHi: "किसी भी डाकघर या अधिकृत बैंक में जाएँ या अधिक जानकारी के लिए 1800-XXX-XXXX पर कॉल करें"
+  contactInfoHi: "किसी भी डाकघर या अधिकृत बैंक में जाएँ या अधिक जानकारी के लिए 1800-XXX-XXXX पर कॉल करें",
+  officialUrl: "https://www.indiapost.gov.in/Financial/Pages/Content/SSA.aspx"
     },
     {
       id: "jsy",
@@ -332,7 +336,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/e4/d3/32/e4d332f45c7b7a6e4e3c8f9b2a1d7e6f.jpg",
       contactInfo: "Contact your nearest ASHA worker or health center or call 104 for more information",
-      contactInfoHi: "अपने निकटतम आशा कार्यकर्ता या स्वास्थ्य केंद्र से संपर्क करें या अधिक जानकारी के लिए 104 पर कॉल करें"
+  contactInfoHi: "अपने निकटतम आशा कार्यकर्ता या स्वास्थ्य केंद्र से संपर्क करें या अधिक जानकारी के लिए 104 पर कॉल करें",
+  officialUrl: "https://nhm.gov.in/index1.php?lang=1&level=2&sublinkid=841&lid=309"
     },
     {
       id: "bbb",
@@ -391,7 +396,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "https://i.pinimg.com/736x/c2/4a/8b/c24a8b9f5e2d1a7c6b3f8e9d0a5c4b7e.jpg",
       contactInfo: "Contact your district education office or visit www.wcd.nic.in for more information",
-      contactInfoHi: "अपने जिला शिक्षा कार्यालय से संपर्क करें या अधिक जानकारी के लिए www.wcd.nic.in पर जाएं"
+  contactInfoHi: "अपने जिला शिक्षा कार्यालय से संपर्क करें या अधिक जानकारी के लिए www.wcd.nic.in पर जाएं",
+  officialUrl: "https://wcd.nic.in/"
     },
     {
       id: "mahila-shakti-kendra",
@@ -454,7 +460,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "/lovable-uploads/f7ad498b-82d4-48b0-9e4a-cefcb01c09d6.png",
       contactInfo: "Ministry of Women and Child Development, Helpline: 1800-121-3333, Email: mahilashakti@gov.in",
-      contactInfoHi: "महिला एवं बाल विकास मंत्रालय, हेल्पलाइन: 1800-121-3333, ईमेल: mahilashakti@gov.in"
+  contactInfoHi: "महिला एवं बाल विकास मंत्रालय, हेल्पलाइन: 1800-121-3333, ईमेल: mahilashakti@gov.in",
+  officialUrl: "https://wcd.nic.in/"
     },
     {
       id: "pradhan-mantri-matru-vandana",
@@ -515,7 +522,8 @@ const GovernmentSchemes = () => {
       ],
       imageUrl: "/lovable-uploads/3b1154fc-a9e5-4df6-9312-7784e0521bd9.png",
       contactInfo: "Nearest Anganwadi center, District Collector office, Helpline: 104, Website: www.pmmvy.nic.in",
-      contactInfoHi: "निकटतम आंगनवाड़ी केंद्र, जिला कलेक्टर कार्यालय, हेल्पलाइन: 104, वेबसाइट: www.pmmvy.nic.in"
+  contactInfoHi: "निकटतम आंगनवाड़ी केंद्र, जिला कलेक्टर कार्यालय, हेल्पलाइन: 104, वेबसाइट: www.pmmvy.nic.in",
+  officialUrl: "https://pmmvy.wcd.gov.in/"
     }
   ];
 
@@ -713,7 +721,7 @@ const GovernmentSchemes = () => {
       {/* Content Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          {selectedScheme && schemeDetails ? (
+      {selectedScheme && schemeDetails ? (
             <SchemeDetails
               title={schemeDetails.title}
               titleHi={schemeDetails.titleHi}
@@ -730,6 +738,7 @@ const GovernmentSchemes = () => {
               imageUrl={schemeDetails.imageUrl}
               contactInfo={schemeDetails.contactInfo}
               contactInfoHi={schemeDetails.contactInfoHi}
+        officialUrl={(schemeDetails as any).officialUrl}
               onBack={handleBack}
             />
           ) : (

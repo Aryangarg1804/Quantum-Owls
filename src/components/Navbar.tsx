@@ -114,9 +114,17 @@ const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    <Translated en="Profile" hi="प्रोफाइल" />
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="flex items-center gap-2 w-full">
+                      <User className="h-4 w-4" />
+                      <Translated en="Profile" hi="प्रोफाइल" />
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/add-product" className="flex items-center gap-2 w-full">
+                      <span className="h-2 w-2 rounded-full bg-saheli-accent" />
+                      <Translated en="Add Product" hi="उत्पाद जोड़ें" />
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 
@@ -252,10 +260,16 @@ const Navbar = () => {
                       <p className="text-sm text-muted-foreground">{user.email}</p>
                     </div>
                   </div>
-                  <Button 
+                  <Link to="/profile" onClick={() => { closeMenu(); }} className="block px-3 py-2 rounded-md text-base font-medium text-saheli-purple hover:bg-muted">
+                    <Translated en="Profile" hi="प्रोफाइल" />
+                  </Link>
+                  <Link to="/add-product" onClick={() => { closeMenu(); }} className="block px-3 py-2 rounded-md text-base font-medium text-saheli-purple hover:bg-muted">
+                    <Translated en="Add Product" hi="उत्पाद जोड़ें" />
+                  </Link>
+            <Button 
                     variant="ghost" 
                     onClick={() => { logout(); closeMenu(); }}
-                    className="w-full justify-start text-red-600 dark:text-red-400"
+              className="w-full justify-start text-red-600 dark:text-red-400"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
                     <Translated en="Logout" hi="लॉग आउट" />

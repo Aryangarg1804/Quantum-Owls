@@ -22,15 +22,7 @@ const Cart = () => {
   }, 0);
   
   const handleCheckout = () => {
-    toast({
-      title: translate("Order Placed", "ऑर्डर दिया गया"),
-      description: translate(
-        "Your order has been placed successfully!",
-        "आपका ऑर्डर सफलतापूर्वक दे दिया गया है!"
-      ),
-    });
-    clearCart();
-    navigate('/');
+    navigate('/checkout');
   };
   
   const handleApplyCoupon = () => {

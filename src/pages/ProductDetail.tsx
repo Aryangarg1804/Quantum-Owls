@@ -5,6 +5,7 @@ import { ArrowLeft, Volume2, VolumeX, ShoppingCart } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useProducts } from "@/contexts/ProductContext";
 import { useCart } from "@/contexts/CartContext";
 
 interface ProductDetailProps {}
@@ -17,7 +18,7 @@ const ProductDetail = ({}: ProductDetailProps) => {
   const { language, translate } = useLanguage();
   const { addItem } = useCart();
   
-  // Product data map - in a real app, this would come from an API
+  // Product data map - fallback for seeded items
   const products = {
     "handloom-sarees": {
       title: "Handloom Sarees",
@@ -129,7 +130,9 @@ const ProductDetail = ({}: ProductDetailProps) => {
     }
   };
   
-  const product = products[id as keyof typeof products];
+  const { findById } = useProducts();
+  const dynamic = id ? findById(id) : undefined;
+  const product = dynamic || (products[id as keyof typeof products] as any);
   
   if (!product) {
     return (
