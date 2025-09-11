@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { apiGet, apiSend } from "@/lib/api";
 
 export interface Product {
   id: string;
@@ -113,51 +112,19 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Load from API (if available), else from localStorage, else seed defaults
+  // Load from localStorage, seed defaults once
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
       try {
-        const rows = await apiGet<any[]>("/api/products");
-        // Map DB shape to Product
-        const mapped: Product[] = rows.map(r => ({
-          id: r.id,
-          category: r.category,
-          image: r.image,
-          images: r.images ?? (r.image ? [r.image] : []),
-          title: r.title,
-          titleHi: r.title_hi ?? undefined,
-          producer: r.producer,
-          producerHi: r.producer_hi ?? undefined,
-          description: r.description,
-          descriptionHi: r.description_hi ?? undefined,
-          priceRange: r.price_range,
-          rating: r.rating ?? undefined,
-          orders: r.orders ?? undefined,
-          ownerId: r.owner_id ?? undefined,
-        }));
-        if (!cancelled && mapped.length) {
-          setProducts(mapped);
-          return;
-        }
+        const parsed = JSON.parse(raw) as Product[];
+        setProducts(parsed.length ? parsed : seedDefaults());
       } catch {
-        // ignore and fallback
+        setProducts(seedDefaults());
       }
-
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        try {
-          const parsed = JSON.parse(raw) as Product[];
-          if (!cancelled) setProducts(parsed.length ? parsed : seedDefaults());
-        } catch {
-          if (!cancelled) setProducts(seedDefaults());
-        }
-      } else {
-        if (!cancelled) setProducts(seedDefaults());
-      }
-    })();
-
-    return () => { cancelled = true; };
+    } else {
+      setProducts(seedDefaults());
+    }
   }, []);
 
   // Persist
@@ -177,63 +144,17 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
       images: input.images && input.images.length ? input.images : [input.image]
     } as Product;
     setProducts(prev => [newProduct, ...prev]);
-    // Try to persist to API (best-effort)
-    (async () => {
-      try {
-        await apiSend("/api/products", "POST", {
-          id: newProduct.id,
-          category: newProduct.category,
-          image: newProduct.image,
-          images: newProduct.images,
-          title: newProduct.title,
-          title_hi: newProduct.titleHi ?? null,
-          producer: newProduct.producer,
-          producer_hi: newProduct.producerHi ?? null,
-          description: newProduct.description,
-          description_hi: newProduct.descriptionHi ?? null,
-          price_range: newProduct.priceRange,
-          rating: newProduct.rating ?? null,
-          orders: newProduct.orders ?? null,
-          owner_id: newProduct.ownerId ?? null,
-        });
-      } catch {
-        // ignore when offline / api missing
-      }
-    })();
     toast({ title: "Product added", description: "Your product is now visible in listings." });
     return newProduct;
   };
 
   const updateProduct = (id: string, updates: Partial<Product>) => {
     setProducts(prev => prev.map(p => (p.id === id ? { ...p, ...updates } : p)));
-    (async () => {
-      try {
-        const p = findById(id);
-        if (!p) return;
-        await apiSend("/api/products", "PUT", {
-          id: p.id,
-          category: p.category,
-          image: p.image,
-          images: p.images,
-          title: p.title,
-          title_hi: p.titleHi ?? null,
-          producer: p.producer,
-          producer_hi: p.producerHi ?? null,
-          description: p.description,
-          description_hi: p.descriptionHi ?? null,
-          price_range: p.priceRange,
-          rating: p.rating ?? null,
-          orders: p.orders ?? null,
-          owner_id: p.ownerId ?? null,
-        });
-      } catch {}
-    })();
     toast({ title: "Product updated" });
   };
 
   const removeProduct = (id: string) => {
     setProducts(prev => prev.filter(p => p.id !== id));
-    (async () => { try { await apiSend("/api/products?id=" + encodeURIComponent(id), "DELETE"); } catch {} })();
     toast({ title: "Product removed" });
   };
 

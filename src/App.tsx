@@ -20,8 +20,6 @@ import Calculators from "./pages/Calculators";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import Investments from "./pages/Investments";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
 import PPFCalculator from "./pages/calculators/PPFCalculator";
 import SukanyaSamriddhiCalculator from "./pages/calculators/SukanyaSamriddhiCalculator";
@@ -36,6 +34,8 @@ import HealthWellness from "./pages/HealthWellness";
 import LegalSupport from "./pages/LegalSupport";
 import ProfilePage from "@/pages/ProfilePage";
 import AddProduct from "@/pages/AddProduct";
+import Checkout from "@/pages/Checkout";
+import OrderConfirmation from "@/pages/OrderConfirmation";
 
 const queryClient = new QueryClient();
 
@@ -75,7 +75,7 @@ const App = () => (
                       <Route path="/register" element={<Register />} />
                       <Route path="/cart" element={<Cart />} />
                       <Route path="/checkout" element={<Checkout />} />
-                      <Route path="/order/:id" element={<OrderConfirmation />} />
+                      <Route path="/order-confirmation" element={<OrderConfirmation />} />
                       <Route path="/profile" element={<ProfilePage />} />
                       <Route path="/add-product" element={<AddProduct />} />
                       <Route path="*" element={<NotFound />} />

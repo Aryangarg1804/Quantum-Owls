@@ -22,6 +22,7 @@ const Cart = () => {
   }, 0);
   
   const handleCheckout = () => {
+    // Go to mock checkout page
     navigate('/checkout');
   };
   

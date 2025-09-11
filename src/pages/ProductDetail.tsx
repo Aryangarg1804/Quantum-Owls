@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Volume2, VolumeX, ShoppingCart } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useProducts } from "@/contexts/ProductContext";
 import { useCart } from "@/contexts/CartContext";
@@ -18,8 +18,8 @@ const ProductDetail = ({}: ProductDetailProps) => {
   const { language, translate } = useLanguage();
   const { addItem } = useCart();
   
-  // Product data map - fallback for seeded items
-  const products = {
+  // Product data map - rich fallback for seeded items
+  const fallbackProducts = {
     "handloom-sarees": {
       title: "Handloom Sarees",
       titleHi: "हथकरघा साड़ियां",
@@ -132,7 +132,12 @@ const ProductDetail = ({}: ProductDetailProps) => {
   
   const { findById } = useProducts();
   const dynamic = id ? findById(id) : undefined;
-  const product = dynamic || (products[id as keyof typeof products] as any);
+  const fallback = id ? (fallbackProducts[id as keyof typeof fallbackProducts] as any) : undefined;
+
+  // Prefer merging fallback (rich content) with dynamic (latest values) when available
+  const product: any = fallback
+    ? { ...fallback, ...(dynamic || {}) }
+    : dynamic;
   
   if (!product) {
     return (
@@ -150,13 +155,16 @@ const ProductDetail = ({}: ProductDetailProps) => {
   };
   
   const handleBuy = () => {
+    const lowerPrice = typeof product.priceRange === 'string' && product.priceRange.includes('-')
+      ? product.priceRange.split('-')[0].trim()
+      : String(product.priceRange || '0');
     addItem({
       id: id as string,
       title: product.title,
       titleHi: product.titleHi,
-      price: product.priceRange.split('-')[0].trim(), // Use the lower price range
+      price: lowerPrice,
       quantity: 1,
-      image: product.images[0]
+      image: (product.images && product.images[0]) || product.image
     });
   };
   
@@ -247,37 +255,43 @@ const ProductDetail = ({}: ProductDetailProps) => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 gap-6 mb-8">
-              <div className="saheli-card animate-scale-in" style={{animationDelay: '100ms'}}>
-                <h3 className="text-xl font-semibold mb-4 text-saheli-purple">
-                  {translate("Features", "विशेषताएँ")}
-                </h3>
-                <ul className="space-y-2">
-                  {(language === 'en' ? product.features : product.featuresHi).map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2 text-muted-foreground">
-                      <span className="inline-block h-6 w-6 bg-saheli-purple/20 text-saheli-purple rounded-full flex-shrink-0 flex items-center justify-center text-sm mt-0.5">{index + 1}</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* Features (optional) */}
+            {(Array.isArray((language === 'en' ? product?.features : product?.featuresHi)) && (language === 'en' ? product.features.length : product.featuresHi.length) > 0) && (
+              <div className="grid grid-cols-1 gap-6 mb-8">
+                <div className="saheli-card animate-scale-in" style={{animationDelay: '100ms'}}>
+                  <h3 className="text-xl font-semibold mb-4 text-saheli-purple">
+                    {translate("Features", "विशेषताएँ")}
+                  </h3>
+                  <ul className="space-y-2">
+                    {((language === 'en' ? product.features : product.featuresHi) as string[]).map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                        <span className="inline-block h-6 w-6 bg-saheli-purple/20 text-saheli-purple rounded-full flex-shrink-0 flex items-center justify-center text-sm mt-0.5">{index + 1}</span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
+            )}
             
-            <div className="saheli-card animate-scale-in" style={{animationDelay: '200ms'}}>
-              <h3 className="text-xl font-semibold mb-4 text-saheli-purple">
-                {translate("Our Story", "हमारी कहानी")}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {translate(product.story, product.storyHi)}
-              </p>
-            </div>
+            {/* Story (optional) */}
+            {(product?.story || product?.storyHi) && (
+              <div className="saheli-card animate-scale-in" style={{animationDelay: '200ms'}}>
+                <h3 className="text-xl font-semibold mb-4 text-saheli-purple">
+                  {translate("Our Story", "हमारी कहानी")}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {translate(product.story, product.storyHi)}
+                </p>
+              </div>
+            )}
           </div>
           
           <div className="lg:col-span-1">
             <div className="sticky top-20">
               <div className="saheli-card mb-6 animate-scale-in" style={{animationDelay: '300ms'}}>
                 <div className="grid grid-cols-2 gap-4 mb-4">
-                  {product.images.map((img, index) => (
+                  {(product.images || [product.image]).map((img: string, index: number) => (
                     <div key={index} className="rounded-lg overflow-hidden">
                       <img 
                         src={img} 
@@ -323,7 +337,7 @@ const ProductDetail = ({}: ProductDetailProps) => {
                   {translate("You May Also Like", "आपको यह भी पसंद आ सकता है")}
                 </h4>
                 <ul className="space-y-3">
-                  {Object.entries(products)
+                  {Object.entries(fallbackProducts)
                     .filter(([key]) => key !== id)
                     .slice(0, 3)
                     .map(([key, p]) => (

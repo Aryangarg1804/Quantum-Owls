@@ -36,63 +36,70 @@ A full-stack web application built with React, TypeScript, and Node.js, designed
 - MongoDB
 - Git
 ## 🔧 Installation
-1. Clone the repository:
-bash
-git clone https://github.com/yourusername/saheli-sisterhood-space.git
-cd saheli-sisterhood-space
-2. Install frontend dependencies:
-bash
-cd saheli-sisterhood-space-main
-npm install
-3. Install backend dependencies:
-bash
-cd ../backend
-npm install
-4. Create a .env file in the backend directory with the following variables:
-env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-## 🚀 Running the Application
-1. Start the backend server:
-bash
 cd backend
 npm run dev
 2. Start the frontend development server:
-bash
 cd saheli-sisterhood-space-main
 npm run dev
 The application will be available at:
-- Frontend: http://localhost:5173
 - Backend: http://localhost:5000
 ## 📦 Building for Production
 1. Build the backend:
-bash
 cd backend
 npm run build
 2. Build the frontend:
 bash
-cd saheli-sisterhood-space-main
-npm run build
 
 ## 🚀 Deploying to Vercel (Frontend)
 
-You can deploy the frontend to Vercel easily:
 
 1. Push your code to GitHub.
 2. Go to [vercel.com](https://vercel.com/) and import your repository.
-3. Set the project root to the frontend folder (e.g. `New Saheli`).
-4. Vercel will detect the Vite project and use `npm run build` automatically.
-5. Add a `vercel.json` file (already included) for proper SPA routing:
-	 ```json
-	 {
 		 "rewrites": [
 			 { "source": "/(.*)", "destination": "/index.html" }
 		 ]
-	 }
 	 ```
 6. After deployment, your site will be live at your Vercel domain.
 
+## 🛠 Tech Stack
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui components
+- React Router DOM
+- React Query
+- Framer Motion
+- Zod for validation
+
+## 📋 Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Git
+
+## 🔧 Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/saheli-sisterhood-space.git
+cd saheli-sisterhood-space-main
+```
+2. Install dependencies:
+```bash
+npm install
+```
+
+## 🚀 Running the Application
+Start the frontend development server:
+```bash
+npm run dev
+```
+The application will be available at:
+- http://localhost:5173
+
+## 📦 Building for Production
+```bash
+npm run build
+```
 For backend deployment, use services like Render, Railway, or Vercel Serverless Functions.
 ## 🤝 Contributing
 1. Fork the repository

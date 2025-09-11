@@ -13,7 +13,7 @@ const Ctx = createContext<ThemeCtx | null>(null);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem('saheli-theme') as Theme | null;
-  return saved || 'dark';
+    return saved || 'light';
   });
 
   useEffect(() => {

@@ -22,7 +22,6 @@ interface SchemeDetailsProps {
   imageUrl: string;
   contactInfo: string;
   contactInfoHi?: string;
-  officialUrl?: string;
   onBack: () => void;
 }
 
@@ -41,7 +40,6 @@ const SchemeDetails = ({
   applicationProcessHi,
   imageUrl,
   contactInfo,
-  officialUrl,
   contactInfoHi,
   onBack
 }: SchemeDetailsProps) => {
@@ -200,15 +198,6 @@ const SchemeDetails = ({
                 </li>
               ))}
             </ol>
-            {officialUrl && (
-              <div className="mt-6">
-                <a href={officialUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className="saheli-btn">
-                    <Translated en="Go to Official Website" hi="आधिकारिक वेबसाइट पर जाएं" />
-                  </Button>
-                </a>
-              </div>
-            )}
           </div>
         </div>
         

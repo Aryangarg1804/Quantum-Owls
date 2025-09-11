@@ -106,8 +106,7 @@ const HealthWellness = () => {
       description: "Science-based period and ovulation tracker",
       descriptionHi: "विज्ञान आधारित मासिक धर्म और ओव्यूलेशन ट्रैकर",
       features: ["Period prediction", "Symptom tracking", "Health insights"],
-      featuresHi: ["मासिक धर्म की भविष्यवाणी", "लक्षण ट्रैकिंग", "स्वास्थ्य अंतर्दृष्टि"],
-      url: "https://helloclue.com/"
+      featuresHi: ["मासिक धर्म की भविष्यवाणी", "लक्षण ट्रैकिंग", "स्वास्थ्य अंतर्दृष्टि"]
     },
     {
       name: "Period Calendar",
@@ -115,8 +114,7 @@ const HealthWellness = () => {
       description: "Simple and reliable period tracking app",
       descriptionHi: "सरल और विश्वसनीय मासिक धर्म ट्रैकिंग ऐप",
       features: ["Cycle calendar", "Fertility window", "Mood tracking"],
-      featuresHi: ["चक्र कैलेंडर", "प्रजनन खिड़की", "मूड ट्रैकिंग"],
-      url: "https://play.google.com/store/apps/details?id=com.popularapp.periodcalendar"
+      featuresHi: ["चक्र कैलेंडर", "प्रजनन खिड़की", "मूड ट्रैकिंग"]
     },
     {
       name: "Flo",
@@ -124,8 +122,7 @@ const HealthWellness = () => {
       description: "Comprehensive women's health assistant",
       descriptionHi: "व्यापक महिला स्वास्थ्य सहायक",
       features: ["AI predictions", "Pregnancy mode", "Health articles"],
-      featuresHi: ["एआई भविष्यवाणियां", "गर्भावस्था मोड", "स्वास्थ्य लेख"],
-      url: "https://flo.health/"
+      featuresHi: ["एआई भविष्यवाणियां", "गर्भावस्था मोड", "स्वास्थ्य लेख"]
     }
   ];
 
@@ -251,12 +248,10 @@ const HealthWellness = () => {
                       </li>
                     ))}
                   </ul>
-                    <a href={(app as any).url} target="_blank" rel="noopener noreferrer" className="block">
-                      <Button className="w-full" variant="outline">
+                  <Button className="w-full" variant="outline">
                     <Download className="h-4 w-4 mr-2" />
                     <Translated en="Download App" hi="ऐप डाउनलोड करें" />
-                      </Button>
-                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -314,11 +309,9 @@ const HealthWellness = () => {
                     {translate(contact.name, contact.nameHi)}
                   </h3>
                   <p className="text-2xl font-bold text-saheli-purple mb-4">{contact.number}</p>
-                  <a href={`tel:${contact.number}`} className="block">
-                    <Button className="w-full" variant="outline">
+                  <Button className="w-full" variant="outline">
                     <Translated en="Call Now" hi="अभी कॉल करें" />
-                    </Button>
-                  </a>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -367,11 +360,9 @@ const HealthWellness = () => {
                     {translate(contact.name, contact.nameHi)}
                   </h3>
                   <p className="text-2xl font-bold text-saheli-purple">{contact.number}</p>
-                  <a href={`tel:${contact.number}`} className="block">
-                    <Button className="mt-4 w-full" variant="outline">
+                  <Button className="mt-4 w-full" variant="outline">
                     <Translated en="Call Now" hi="अभी कॉल करें" />
-                    </Button>
-                  </a>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
